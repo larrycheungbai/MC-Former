@@ -5,7 +5,7 @@ The required packages for running the code have been listed in environment_resto
 
 If you find this project is useful please cite our paper and the restormer paper.
 
-'''
+```
 @inproceedings{zhang2024reducing,
   title={Reducing Motion Artifacts in Brain MRI Using Vision Transformers and Self-Supervised Learning},
   author={Zhang, Lei and Wang, Xiaoke and Herskovits, Edward H and Melhem, Elias R and Chang, Linda and Wang, Ze and Ernst, Thomas},
@@ -23,5 +23,5 @@ If you find this project is useful please cite our paper and the restormer paper
   pages={5728--5739},
   year={2022}
 }
-'''
+```
 
