@@ -44,23 +44,103 @@ An additional exploratory evaluation on the independent PMoC3D dataset, comprisi
 
 ## Installation
 
-The repository includes an environment configuration file:
+MC-Former is implemented using the Restormer architecture. The original Restormer source code is required for inference, but its pretrained model weights are not needed.
 
-`environment_restormer.yml`
+### Step 1. Install Restormer
 
-Detailed installation instructions will be provided after verifying the environment configuration and dependencies.
+Clone the original [Restormer repository](https://github.com/swz30/Restormer):
+
+```bash
+git clone https://github.com/swz30/Restormer.git
+```
+
+Follow the [official Restormer installation instructions](https://github.com/swz30/Restormer/blob/main/INSTALL.md) to install its dependencies.
+
+The Conda environment used in our development is also provided as `environment_restormer.yml`.
+
+### Step 2. Download MC-Former
+
+```bash
+git clone https://github.com/larrycheungbai/MC-Former.git
+cd MC-Former
+```
+
+The repository includes the MC-Former checkpoint and its corresponding network configuration:
+
+- **Checkpoint:** `Model/net_g_1028000.pth`
+- **Configuration:** `Deblurring_V3_1200k_with_overlap_downstream_last_clean_img.yml`
+- **Inference script:** `test.py`
+
+## Inference
+
+### Input Preparation
+
+Prepare a directory containing motion-corrupted brain MRI images in PNG or JPG format.
+
+The current implementation expects three-channel images with 8-bit intensity values. It does not directly read DICOM or NIfTI files.
+
+For example:
+
+```text
+MC-Former/
+├── test.py
+├── Model/
+│   └── net_g_1028000.pth
+└── sample_images/
+    ├── image_001.png
+    └── image_002.png
+```
+
+### Run MC-Former
+
+From the MC-Former repository root, execute:
+
+```bash
+python test.py \
+    --restormer_root ../Restormer \
+    --input_dir ./sample_images \
+    --result_dir ./results
+```
+
+Replace `../Restormer` with the path to your local Restormer installation if the directory structure is different.
+
+The script uses the included MC-Former checkpoint and YAML configuration by default.
+
+### Output
+
+The corrected images are saved as PNG files in the specified output directory:
+
+```text
+results/
+├── image_001.png
+└── image_002.png
+```
+
+Output image dimensions are preserved.
+
+### Optional Arguments
+
+The script supports the following command-line arguments:
+
+| Argument | Description |
+|---|---|
+| `--input_dir` | Input image file or folder containing PNG/JPG images |
+| `--result_dir` | Directory for corrected output images |
+| `--weights` | Path to the MC-Former checkpoint |
+| `--config` | Path to the network configuration YAML |
+| `--restormer_root` | Path to the original Restormer repository |
+
+The current implementation requires an NVIDIA GPU with CUDA support.
 
 ## Pretrained Model
 
-The repository includes a pretrained MC-Former model checkpoint:
+The pretrained MC-Former checkpoint is available in this repository:
 
 `Model/net_g_1028000.pth`
 
-The checkpoint is intended for inference using the Restormer-based MC-Former architecture.
+The model uses the Restormer architecture and was developed through masked image modeling (MIM) pretraining followed by supervised training for MRI motion correction.
 
-The model was trained using masked image modeling (MIM) pretraining followed by supervised learning on simulated motion-corrupted brain MRI.
-
-Please note that the current implementation requires the corresponding model architecture and configuration files. Inference compatibility is being verified.
+The original Restormer baseline checkpoint is not required and is not distributed with this repository.
 
 ## Limitations
 
