@@ -50,9 +50,17 @@ The repository includes an environment configuration file:
 
 Detailed installation instructions will be provided after verifying the environment configuration and dependencies.
 
-## Inference
+## Pretrained Model
 
-Inference instructions and pretrained model availability will be documented after verification of the existing testing scripts and model files.
+The repository includes a pretrained MC-Former model checkpoint:
+
+`Model/net_g_1028000.pth`
+
+The checkpoint is intended for inference using the Restormer-based MC-Former architecture.
+
+The model was trained using masked image modeling (MIM) pretraining followed by supervised learning on simulated motion-corrupted brain MRI.
+
+Please note that the current implementation requires the corresponding model architecture and configuration files. Inference compatibility is being verified.
 
 ## Limitations
 
