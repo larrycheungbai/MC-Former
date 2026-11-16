@@ -29,7 +29,8 @@ parser.add_argument('--dataset', default='moco_exp_20_s8', type=str, help='Test 
 
 args = parser.parse_args()
 ####### Load yaml #######
-yaml_file = 'Options/Deblurring_V3_1200k_with_overlap_downstream_last_clean_img.yml'
+yaml_file = './Deblurring_V3_1200k_with_overlap_downstream_last_clean_img.yml'
+
 import yaml
 
 try:
