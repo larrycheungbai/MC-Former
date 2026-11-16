@@ -18,7 +18,13 @@ parser = argparse.ArgumentParser(description='Single Image Motion Deblurring usi
 
 parser.add_argument('--input_dir', default='./Datasets/', type=str, help='Directory of validation images')
 parser.add_argument('--result_dir', default='../ResultMoco/results_mask_pretrained_w_clean_on_test_best/', type=str, help='Directory for results')
-parser.add_argument('--weights', default='../experiments/Deblurring_V3_1200k_with_overlap_downstream_last_clean_img/models/net_g_1028000.pth', type=str, help='Path to weights')
+
+parser.add_argument(
+    '--weights',
+    default='./Model/net_g_1028000.pth',
+    type=str,
+    help='Path to pretrained MC-Former weights'
+)
 parser.add_argument('--dataset', default='moco_exp_20_s8', type=str, help='Test Dataset') # ['GoPro', 'HIDE', 'RealBlur_J', 'RealBlur_R']
 
 args = parser.parse_args()
