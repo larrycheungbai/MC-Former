@@ -1,1 +1,4 @@
-Subject-level statistical analysis scripts for MC-Former.
+python analysis/MCFormer_subject_level_ANOVA_Bonferroni.py
+python analysis/MCFormer_subject_level_Shapiro_Wilk.py
+python analysis/MCFormer_subject_level_Wilcoxon_Bonferroni.py
+python analysis/plot_subject_level_violin.py
